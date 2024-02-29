@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/autentification.css" th:href="@{/css/autentification.css}">
+</head>
+<body>
+<main>
+    <div id="container">
+        <h1>Авторизация</h1>
+        <form method="post" th:action="@{/login}">
+            <span th:if="${param.error}">Неверно введённый номер телефона или пароль!</span>
+            <div class="input-container">
+                <input name="username" type="text" placeholder="Номер телефона*">
+            </div>
+            <div class="input-container">
+                <input name="password" type="password" placeholder="Пароль*">
+            </div>
+            <input type="submit" value="Авторизоваться">
+            <p>Нет аккаунта? <a th:href="@{/register}">Регистрация</a></p>
+        </form>
+    </div>
+</main>
+</body>
+</html>

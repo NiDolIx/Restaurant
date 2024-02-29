@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/autentification.css" th:href="@{/css/autentification.css}">
+</head>
+<body>
+    <main>
+        <div id="container">
+            <h1>Регистрация</h1>
+            <form method="post" th:action="@{/register}" th:object="${user}">
+                <div class="input-container">
+                    <input th:field="*{userName}" type="text" placeholder="Имя*">
+                    <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Ошибка ввода имени!</span>
+                </div>
+                <div class="input-container">
+                    <input th:field="*{userSurname}" type="text" placeholder="Фамилия*">
+                    <span th:if="${#fields.hasErrors('userSurname')}" th:errors="*{userSurname}">Ошибка ввода фамилии!</span>
+                </div>
+                <div class="input-container">
+                    <input th:field="*{userLastname}" type="text" placeholder="Отчество">
+                </div>
+                <div class="input-container">
+                    <input th:field="*{userPhoneNumber}" type="text" placeholder="Номер телефона*">
+                    <span th:if="${#fields.hasErrors('userPhoneNumber')}" th:errors="*{userPhoneNumber}">Ошибка ввода телефона!</span>
+                </div >
+                <div class="input-container">
+                    <input th:field="*{userPassword}" type="password" placeholder="Пароль*">
+                    <span th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}">Ошибка ввода пароля!</span>
+                </div>
+                <div class="input-container">
+                    <input th:field="*{userPasswordConfirm}" type="password" placeholder="Повторите пароль*">
+                    <span th:if="${#fields.hasErrors('userPasswordConfirm')}" th:errors="*{userPasswordConfirm}">Ошибка ввода пароля!</span>
+                </div>
+                <input type="submit" value="Зарегистрироваться">
+                <p>Есть аккаунт? <a th:href="@{/login}">Авторизация</a></p>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

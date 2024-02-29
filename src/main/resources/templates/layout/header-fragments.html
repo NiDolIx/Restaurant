@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HEADER-FRAGMENTS</title>
+</head>
+<body>
+    <header th:fragment="header-user">
+        <nav>
+            <ul>
+                <a><li>Профиль</li></a>
+                <a><li>Меню</li></a>
+                <a><li>Заказы</li></a>
+            </ul>
+        </nav>
+    </header>
+
+    <header th:fragment="header-admin">
+        <nav>
+            <ul>
+                <a><li>Профиль</li></a>
+                <a><li>Меню</li></a>
+                <a><li>Заказы</li></a>
+                <a><li>Пользователи</li></a>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>

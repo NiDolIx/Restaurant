@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/home.css" th:href="@{/css/home.css}">
+</head>
+<body>
+    <th:block th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+        <div th:replace="~{layout/header-fragments :: header-user}"></div>
+    </th:block>
+    <th:block th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+        <div th:replace="~{layout/header-fragments :: header-admin}"></div>
+    </th:block>
+    <main>
+        <div id="main-container">
+            <div id="user-fullname">
+                <p th:text="${user.getUserSurname()}">Фамилия</p>
+                <p th:text="${user.getUserName()}">Имя</p>
+                <p th:text="${user.getUserLastname()}">Отчество</p>
+            </div>
+            <hr>
+            <div id="info-container">
+                <p>Номер телефона: <span th:text="${user.getUserPhoneNumber()}"></span></p>
+                <th:block th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                    <p>Роль: Пользователь</p>
+                </th:block>
+                <th:block th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                    <p>Роль: Администратор</p>
+                </th:block>
+            </div>
+            <button id="btn-open">Редактировать</button>
+        </div>
+    </main>
+</body>
+</html>

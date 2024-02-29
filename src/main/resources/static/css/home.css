@@ -1,0 +1,76 @@
+ul > a:first-child > li {
+    background-color: #fff;
+    color: teal;
+}
+
+main {
+    width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#main-container {
+    width: 100%;
+    padding: 10px 0 10px;
+    background-color: teal;
+}
+
+#user-fullname {
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+}
+
+#user-fullname > p {
+    display: inline;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+#user-fullname > p:not(p:last-child) {
+    margin-right: 10px;
+}
+
+hr {
+    width: 100%;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-top: 3px solid #fff;
+}
+
+#info-container {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+p, span {
+    font-size: 18px;
+    color: #fff;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 30px;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: teal;
+    background-color: #fff;
+    transition: .7s all;
+}
+
+button:hover {
+    color: #fff;
+    background-color: teal;
+    border: 2px solid #fff;
+    user-select: none;
+    cursor: pointer;
+}
