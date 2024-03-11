@@ -5,6 +5,7 @@
 }
 
 header {
+    position: relative;
     width: 100%;
     height: 100px;
     display: flex;
@@ -48,7 +49,23 @@ li:hover {
     cursor: pointer;
 }
 
-a {
+ul > a {
     width: 100%;
     height: 100%;
+}
+
+.logout {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    font-size: 26px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logout:hover {
+    opacity: .7;
+    cursor: pointer;
+    user-select: none;
 }
