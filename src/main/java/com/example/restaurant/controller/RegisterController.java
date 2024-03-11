@@ -30,7 +30,7 @@ public class RegisterController {
                     "error.userPasswordConfirm",
                     "Пароли не совпадают!");
         }
-        if (userService.checkUserPhoneNumber(user.getUserPhoneNumber())) {
+        if (userService.findUserByPhoneNumber(user.getUserPhoneNumber()).isPresent()) {
             bindingResult.rejectValue(
                     "userPhoneNumber",
                     "error.userPhoneNumber",
