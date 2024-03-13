@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/header.css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/admin-user-panel.css" th:href="@{/css/admin-user-panel.css}">
+</head>
+<body>
+    <th:block th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+        <div th:replace="~{layout/header-fragments :: header-user}"></div>
+    </th:block>
+    <th:block th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+        <div th:replace="~{layout/header-fragments :: header-admin}"></div>
+    </th:block>
+    <main>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Отчество</th>
+                <th>Номер телефона</th>
+                <th>Роль</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="*{user.getUserId()}"></td>
+                <td th:text="*{user.getUserName()}">Имя</td>
+                <td th:text="*{user.getUserSurname()}">Фамилия</td>
+                <td th:text="*{user.getUserLastname()}">Отчество</td>
+                <td th:text="*{user.getUserPhoneNumber()}">Номер телефона</td>
+                <td th:text="*{user.getUserRole()}">Роль</td>
+                <td><input th:onclick="'confirmationDelete(\'' + ${user.getUserId()} + '\')'" class="btn-open" type="button" value="У"></td>
+                <td><input class="btn-open" id="btn-open-form-update" type="button" value="О"></td>
+            </tr>
+        </table>
+        <form id="delete-form" th:method="delete" th:action="@{/admin/users/delete}">
+            <p>Удалить выбранного пользователя?</p>
+            <input name="userId" id="user-id" type="hidden">
+            <div class="btn-container">
+                <input type="submit" value="Удалить">
+                <input class="btn-close" id="btn-close-form-delete" type="button" value="Отмена">
+            </div>
+        </form>
+    </main>
+
+    <script th:src="@{/js/adminUserPanel.js}"></script>
+</body>
+</html>

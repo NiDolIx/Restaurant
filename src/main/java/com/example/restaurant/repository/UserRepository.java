@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -19,6 +20,30 @@ public class UserRepository {
     @Autowired
     public UserRepository(NamedParameterJdbcTemplate template) {
         this.template = template;
+    }
+
+    public void deleteUser(Long userId) {
+        String sql = """
+                DELETE FROM public.user
+                WHERE user_id = ?
+                """;
+        template.getJdbcTemplate().update(sql, userId);
+    }
+
+    public List<User> getAllUsers() {
+        String sql = """
+                SELECT 
+                    user_id, 
+                    user_name, 
+                    user_surname, 
+                    user_lastname, 
+                    user_role, 
+                    user_phone, 
+                    user_password 
+                FROM public.user
+                WHERE user_role NOT IN ('ROLE_ADMIN')
+                """;
+        return template.query(sql, new UserMapper());
     }
 
     public void updateUser(UserDto userDto, Long userId) {

@@ -31,6 +31,14 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    public List<User> getAllUsers() {
+        return userRepository.getAllUsers();
+    }
+
+    public void deleteUser(Long userId) {
+        userRepository.deleteUser(userId);
+    }
+
     public void updateUser(UserDto userDto, Long userId) {
         userRepository.updateUser(userDto, userId);
         updateSecurityContext(userDto.getUserPhoneNumber());
